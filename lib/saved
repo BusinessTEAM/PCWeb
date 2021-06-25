@@ -1,0 +1,188 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_glow/flutter_glow.dart';
+
+const flutterColor = Color(0xFF40D0FD);
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  static const kIcons = <Widget>[
+    Text('data'),
+    GlowText('data'),
+    Icon(Icons.accessibility_new),
+    Icon(Icons.account_balance_wallet),
+    Icon(Icons.add_circle_outlined),
+    Icon(Icons.money_off_csred_rounded),
+    //Image.asset('images/long.png'),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[900],
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              //color: Colors.red,
+              height: 600,
+              width: 900,
+              child: DefaultTabController(
+                length: kIcons.length,
+                child: Builder(
+                  builder: (BuildContext context) => Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: IconTheme(
+                            data: IconThemeData(
+                              size: 128,
+                              color: Theme.of(context).accentColor,
+                            ),
+                            child: TabBarView(
+                              children: kIcons,
+                            ),
+                          ),
+                        ),
+                        GlowContainer(
+                          child: TabPageSelector(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FittedBox(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                //color: Colors.white,
+                height: 300,
+                width: 400,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Image.asset(
+                      'images/long.png',
+                      //width: 500,
+                    ),
+                    Center(
+                      child: IndexedStack(
+                        index: _index,
+                        children: <Widget>[
+                          Center(
+                            child: Container(
+                              //color: Colors.red,
+
+                              child: Image.asset('images/e1.png'),
+                            ),
+                          ),
+                          Center(
+                            child: Container(
+                              //color: Colors.yellow,
+                              child: Image.asset('images/e2.png'),
+                            ),
+                          ),
+                          Center(
+                            child: Container(
+                              //color: Colors.yellow,
+                              child: Image.asset('images/e3.png'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      child: Row(
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              setState(
+                                () {
+                                  if (_index == 2)
+                                    _index = 0;
+                                  else
+                                    _index++;
+                                },
+                              );
+                            },
+                            icon: GlowIcon(
+                              Icons.next_plan,
+                              color: Colors.red,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 400,
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              setState(
+                                () {
+                                  if (_index == 0)
+                                    _index = 2;
+                                  else
+                                    _index--;
+                                },
+                              );
+                            },
+                            icon: GlowIcon(
+                              Icons.backpack,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
